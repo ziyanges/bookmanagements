@@ -42,14 +42,6 @@ public class borrowtest {
         sqlSession.commit();
 
     }
-    //借书测试
-    @Test
-    public void test4(){
-        SqlSessionFactory sqlSessionFactory = sqlsessionFactoryUtills.getsqlSessionFactory();
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        BorrowMapper borrowMapper = sqlSession.getMapper(BorrowMapper.class);
-        borrowMapper.addrecord("123456","123456",Date.valueOf("2022-12-29"),Date.valueOf("2022-12-31"));
-        sqlSession.commit();
 
-    }
+
 }
