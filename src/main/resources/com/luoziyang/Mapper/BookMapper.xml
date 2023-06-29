@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luoziyang.Mapper.BookMapper">
+    <insert id="addbook">
+        insert into book(ISBN,author,bookname,reserve)
+        values (#{ISBN}, #{author}, #{bookname},#{reserve});
+    </insert>
+    <update id="updateReserve">
+    update book
+        <set>
+        <if test="reserve != null">
+            reserve = #{reserve},
+        </if>
+        </set>
+        where ISBN=#{ISBN};
+
+    </update>
+    <delete id="deletebook">
+        delete from book
+    where ISBN=#{ISBN};
+    </delete>
+
+    <select id="selectbybookname" resultType="com.luoziyang.pojo.book">
+        select * from book
+    where bookname=#{bookname};
+    </select>
+    <select id="selectbyISBN" resultType="com.luoziyang.pojo.book">
+        select * from book
+        where ISBN=#{ISBN};
+    </select>
+</mapper>

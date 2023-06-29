@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luoziyang.Mapper.UserMapper">
+    <insert id="addpeople">
+        insert into user(username, password,type)
+        values (#{username}, #{password}, #{type});
+    </insert>
+    <update id="updatepassword">
+        update user
+        <set>
+            <if test="password != null">
+                password  = #{password },
+            </if>
+        </set>
+        where username=#{username};
+    </update>
+    <delete id="deletepeople">
+        delete from user
+    where username=#{username};
+    </delete>
+
+    <select id="selectbylogin" resultType="com.luoziyang.pojo.User">
+        select * from user
+    where username=#{username} and password=#{password};
+    </select>
+    <select id="selectpeople" resultType="com.luoziyang.pojo.User">
+        select * from user
+        where type=#{type};
+    </select>
+</mapper>

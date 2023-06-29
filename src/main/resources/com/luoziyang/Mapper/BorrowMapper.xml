@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luoziyang.Mapper.BorrowMapper">
+    <insert id="addrecord">
+        insert into borrowrecord(username,ISBN, settime,deadtime)
+        values (#{username}, #{ISBN}, #{settime},#{deadtime});
+    </insert>
+    <update id="updatetime">
+        update borrowrecord
+        <set>
+            <if test="deadtime != null">
+                deadtime  = #{deadtime },
+            </if>
+        </set>
+        where username=#{username} and ISBN=#{ISBN};
+    </update>
+    <delete id="deleterecord">
+        delete from borrowrecord
+    where username=#{username} and ISBN=#{ISBN};
+    </delete>
+
+    <select id="selectallByusername" resultType="com.luoziyang.pojo.BorrowRecord">
+        select * from borrowrecord
+    where username=#{username};
+    </select>
+</mapper>
